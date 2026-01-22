@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noura.Designer | معرض أعمالي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff4d00;
+            --dark-bg: #0b0b0b;
+            --card-bg: #161616;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--dark-bg); color: var(--text-light); line-height: 1.6; }
+
+        /* Navigation */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 8%; position: sticky; top: 0; background: rgba(11, 11, 11, 0.95); z-index: 1000; border-bottom: 1px solid #222; }
+        .logo { font-size: 1.6rem; font-weight: 700; letter-spacing: 1px; color: var(--text-light); }
+        .logo span { color: var(--primary-color); }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-right: 35px; }
+        .nav-links a { text-decoration: none; color: var(--text-light); font-size: 0.95rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* Hero Section */
+        .hero { height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10%; background: radial-gradient(circle at center, #1a1a1a 0%, #0b0b0b 100%); }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 25px; }
+        .hero h1 span { color: var(--primary-color); }
+        .hero p { color: var(--text-gray); font-size: 1.2rem; max-width: 800px; line-height: 1.8; }
+
+        /* Section Styling */
+        section { padding: 80px 8%; }
+        .section-title { font-size: 2.5rem; margin-bottom: 60px; text-align: center; position: relative; }
+        .section-title::after { content: ''; width: 60px; height: 4px; background: var(--primary-color); position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); }
+
+        /* --- نظام التوزيع الجديد (Masonry) لإظهار الصور كاملة --- */
+        .grid { 
+            columns: 3 300px; /* تقسيم تلقائي للأعمدة حسب عرض الشاشة */
+            column-gap: 30px; 
+            width: 100%;
+        }
+
+        .project-card { 
+            background: var(--card-bg); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            margin-bottom: 30px; /* مسافة بين الصور بالطول */
+            break-inside: avoid; /* منع انقسام الكرت بين عمودين */
+            transition: 0.4s ease; 
+            border: 1px solid #222;
+            display: inline-block; /* ضروري لعمل الأعمدة بشكل صحيح */
+            width: 100%;
+        }
+
+        .project-card:hover { transform: translateY(-10px); border-color: var(--primary-color); }
+        
+        .project-card img { 
+            width: 100%; 
+            height: auto; /* الارتفاع يتحدد تلقائياً حسب أبعاد الصورة الأصلية */
+            display: block; 
+        }
+
+        .project-info { padding: 20px; }
+        .project-info h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color); }
+        .project-info p { font-size: 0.9rem; color: var(--text-gray); text-align: justify; line-height: 1.5; }
+
+        /* Contact Section */
+        .contact { background: #111; text-align: center; border-radius: 50px 50px 0 0; }
+        .contact-box { background: var(--card-bg); display: inline-block; padding: 50px; border-radius: 30px; border: 1px solid var(--primary-color); max-width: 600px; width: 100%; }
+        .contact-info { margin: 15px 0; font-size: 1.1rem; }
+        .contact-info span { color: var(--primary-color); font-weight: bold; }
+        .btn { display: inline-block; padding: 15px 45px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; margin-top: 20px; }
+        .btn:hover { background: #e64500; transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 77, 0, 0.3); }
+
+        footer { text-align: center; padding: 40px; color: #555; font-size: 0.85rem; border-top: 1px solid #222; }
+
+        @media (max-width: 768px) { 
+            .hero h1 { font-size: 2.2rem; } 
+            .nav-links { display: none; } 
+            .grid { columns: 1; } /* عمود واحد في الموبايل */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Noura<span>.Designer</span></div>
+        <ul class="nav-links">
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#featured">مشاريع مختارة</a></li>
+            <li><a href="#work">أعمالي</a></li>
+            <li><a href="#contact">تواصل معي</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>أصمم <span>تجارب بصرية</span> لا تُنسى</h1>
+        <p>مرحباً، أنا مصممة جرافيك متخصصة في بناء الهوية البصرية، الشعارات، وتصاميم السوشيال ميديا الإبداعية، حسب طلب العميل.</p>
+        <a href="#featured" class="btn">اكتشفي إبداعي</a>
+    </section>
+
+    <section id="featured">
+        <h2 class="section-title">مشاريع مختارة</h2>
+        <div class="grid">
+            <div class="project-card">
+                <img src="1- Vitamin c post.png" alt="Anwar Vitamin C">
+                <div class="project-info">
+                    <h3>بوست إعلاني - Anwar vitamin c</h3>
+                    <p>تصميم مفعم بالحيوية يستخدم تدرجات اللون البرتقالي ليعكس طاقة فيتامين C. تم توزيع العناصر بشكل يبرز نضارة البشرة مع لمسة فنية تجذب العين فوراً.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="1- burger.png" alt="Burger Ad">
+                <div class="project-info">
+                    <h3>إعلان برجر مش عادي</h3>
+                    <p>استخدام ذكي للون الأحمر الداكن لإثارة شهية العميل. تم إبراز تفاصيل طبقات البرجر بدقة عالية مع خلفية Typography عصرية.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="5- logo خبيرك.jpg" alt="Kabirak Logo">
+                <div class="project-info">
+                    <h3>لوجو خبيرك - Kabirak</h3>
+                    <p>تم اختيار اللون الأزرق لتعزيز الشعور بالثقة والاحترافية. التصميم يدمج رمز القوة والخبرة داخل شكل هندسي متين.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" style="background-color: #0f0f0f;">
+        <h2 class="section-title">معرض أعمالي</h2>
+        <div class="grid">
+            <div class="project-card">
+                <img src="1- Apex logo.jpg" alt="Apex Logo">
+                <div class="project-info">
+                    <h3>هوية Apex Group</h3>
+                    <p>تصميم شعار عصري يعتمد على التجريد الهندسي، يعكس التطور والنمو المستمر للمؤسسة.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="4- opening coffee post_.png" alt="Coffee Post">
+                <div class="project-info">
+                    <h3>بوست افتتاح كافيه</h3>
+                    <p>تصميم دافئ يركز على تفاصيل القهوة، مع خطوط انسيابية تعبر عن الراحة والمتعة.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="6- عمره.png" alt="Umrah Post">
+                <div class="project-info">
+                    <h3>إعلان رحلات العمرة</h3>
+                    <p>تصميم روحاني منظم يعرض المعلومات بوضوح تام، مع الحفاظ على وقار ومكانة المناسبة.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="7- logo nutritionist.jpg" alt="Nutritionist Logo">
+                <div class="project-info">
+                    <h3>لوجو Samah Diet</h3>
+                    <p>استخدام ألوان مبهجة (فوشيا وأصفر) لتعزيز الحيوية، مع رمز التفاحة الذي يربط الهوية بالصحة.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="8- facebook cover.png" alt="Facebook Cover">
+                <div class="project-info">
+                    <h3>تصميم غلاف فيسبوك</h3>
+                    <p>دمج صور شخصية مع لمسات فنية رقمية لإنشاء غلاف يعبر عن الشخصية والإبداع.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="9- photographer card.png" alt="Photographer Card">
+                <div class="project-info">
+                    <h3>بزنس كارد مصورة</h3>
+                    <p>تصميم Minimalist يركز على اسم المصورة ورمز الكاميرا بأسلوب خطي أنيق باللون الأحمر.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="10- Instagram template.png" alt="Instagram Template">
+                <div class="project-info">
+                    <h3>قالب انستقرام Samah Diet</h3>
+                    <p>تصميم قالب عريض متناسق يساعد في ترتيب الحساب وإظهار النصائح الغذائية بشكل جذاب.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="book cover mockup .jpg" alt="Book Cover">
+                <div class="project-info">
+                    <h3>تصميم غلاف كتاب Database</h3>
+                    <p>تصميم تعليمي يجمع بين التكنولوجيا والترتيب، باستخدام ألوان رسمية توحي بالدقة الأكاديمية.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="ABEX card. mockup.jpg" alt="Apex Card">
+                <div class="project-info">
+                    <h3>موك آب كرت Apex</h3>
+                    <p>عرض واقعي للهوية البصرية على بزنس كارد، يبرز التدرج اللوني الجذاب للشعار.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-box">
+            <h2 style="margin-bottom: 20px;">هل أعجبكِ عملي؟</h2>
+            <p>دعينا نحول فكرتك القادمة إلى واقع فني مبهر.</p>
+            <div class="contact-info">الإيميل: <span>noura.alawenah18@gmail.com</span></div>
+            <div class="contact-info">الهاتف: <span>0790631153</span></div>
+            <a href="mailto:noura.alawenah18@gmail.com" class="btn">ارسل ايميل الآن</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>جميع الحقوق محفوظة لـ Noura.Designer © ٢٠٢٦ | صُمم بكل حب لدعم الإبداع</p>
+    </footer>
+
+</body>
+</html>
